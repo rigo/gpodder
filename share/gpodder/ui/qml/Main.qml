@@ -165,6 +165,8 @@ Item {
             togglePlayback(episode);
         } else {
             mediaPlayer.enqueueEpisode(episode);
+	    /* Let the user know that the episode was correctly added to the playlist */
+	    main.showMessage(_('The episode has been added to the playlist'));
         }
     }
 
@@ -251,6 +253,13 @@ Item {
                 text: _('Filter:') + ' ' + mainObject.currentFilterText
                 onClicked: {
                     mainObject.showFilterDialog();
+                }
+            },
+            Action {
+                text: _('Update')
+                onClicked: {
+                    controller.updatePodcast(main.currentPodcast)
+		    main.showMessage(_('Updating podcast'))
                 }
             },
             Action {
